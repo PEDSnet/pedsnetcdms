@@ -1,0 +1,487 @@
+{
+    "demographic": {
+        "primary_key": {
+            "columns": ["patid"]
+        },
+        "columns": {
+            "patid": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "birth_date": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 10
+                }
+            },
+            "birth_time": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 5
+                }
+            },
+            "sex": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 2
+                }
+            },
+            "hispanic": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 2
+                }
+            },
+            "race": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 2
+                }
+            },
+            "biobank_flag": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1
+                }
+            },
+            "raw_sex": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "raw_hispanic": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "raw_race": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            }
+        }
+    },
+    "enrollment": {
+        "primary_key": {
+            "columns": ["patid", "enr_start_date", "enr_basis"]
+        },
+        "columns": {
+            "patid": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "enr_start_date": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 10
+                }
+            },
+            "enr_end_date": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 10
+                }
+            },
+            "chart": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1
+                }
+            },
+            "enr_basis": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1
+                }
+            }
+        }
+    },
+    "encounter": {
+        "primary_key": {
+            "columns": ["patid", "encounterid"]
+        },
+        "columns": {
+            "patid": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "encounterid": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "admit_date": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 10
+                }
+            },
+            "admit_time": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 5
+                }
+            },
+            "discharge_date": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 10
+                }
+            },
+            "discharge_time": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 5
+                }
+            },
+            "providerid": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "facility_location": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 3
+                }
+            },
+            "enc_type": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 2
+                }
+            },
+            "facilityid": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "discharge_disposition": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 2
+                }
+            },
+            "discharge_status": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 2
+                }
+            },
+            "drg": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 3
+                }
+            },
+            "drg_type": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 2
+                }
+            },
+            "admitting_source": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 2
+                }
+            },
+            "raw_enc_type": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "raw_discharge_disposition": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "raw_discharge_status": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "raw_drg_type": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "raw_admitting_source": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            }
+        }
+    },
+    "diagnosis": {
+        "primary_key": {
+            "columns": ["patid", "encounterid", "dx", "dx_type"]
+        },
+        "columns": {
+            "patid": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "encounterid": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "enc_type": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 2
+                }
+            },
+            "admit_date": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 10
+                }
+            },
+            "providerid": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "dx": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 18
+                }
+            },
+            "dx_type": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 2
+                }
+            },
+            "dx_source": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 2
+                }
+            },
+            "pdx": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 2
+                }
+            },
+            "raw_dx": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "raw_dx_type": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "raw_dx_source": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "raw_pdx": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            }
+        }
+    },
+    "procedure": {
+        "primary_key": {
+            "columns": ["patid", "encounterid", "px", "px_type"]
+        },
+        "columns": {
+            "patid": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "encounterid": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "enc_type": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 2
+                }
+            },
+            "admit_date": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 10
+                }
+            },
+            "providerid": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "px": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 18
+                }
+            },
+            "px_type": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 2
+                }
+            },
+            "raw_px": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "raw_px_type": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            }
+        }
+    },
+    "vital": {
+        "primary_key": {
+            "columns": ["vitalid"]
+        },
+        "columns": {
+            "vitalid": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "patid": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "encounterid": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "measure_date": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 10
+                }
+            },
+            "measure_time": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 5
+                }
+            },
+            "vital_source": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 2
+                }
+            },
+            "ht": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 8,
+                    "scale": 2
+                }
+            },
+            "wt": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 8,
+                    "scale": 2
+                }
+            },
+            "diastolic": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 4,
+                    "scale": 0
+                }
+            },
+            "systolic": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 4,
+                    "scale": 0
+                }
+            },
+            "original_bmi": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 8,
+                    "scale": 2
+                }
+            },
+            "bp_position": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 2
+                }
+            },
+            "raw_vital_source": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "raw_diastolic": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "raw_systolic": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            },
+            "raw_bp_position": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 1028
+                }
+            }
+        }
+    }
+}

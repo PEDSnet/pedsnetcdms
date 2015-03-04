@@ -1,0 +1,664 @@
+{
+    "i2b2": {
+        "columns": {
+            "c_hlevel": {
+                "datatype": "numeric",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "precision": 22,
+                    "scale": 0
+                }
+            },
+            "c_fullname": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "length": 700
+                }
+            },
+            "c_name": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "length": 2000
+                }
+            },
+            "c_synonym_cd": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "length": 1
+                }
+            },
+            "c_visualattributes": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "length": 3
+                }
+            },
+            "c_totalnum": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 22,
+                    "scale": 0
+                }
+            },
+            "c_basecode": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "c_metadataxml": {
+                "datatype": "text"
+            },
+            "c_facttablecolumn": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "c_tablename": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "c_columnname": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "c_columndatatype": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "c_operator": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "length": 10
+                }
+            },
+            "c_dimcode": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "length": 700
+                }
+            },
+            "c_comment": {
+                "datatype": "text"
+            },
+            "c_tooltip": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 900
+                }
+            },
+            "m_applied_path": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "length": 700
+                }
+            },
+            "update_date": {
+                "datatype": "datetime",
+                "column_behavior": {
+                    "nullable": false,
+                    "default": "now"
+                }
+            },
+            "download_date": {
+                "datatype": "datetime",
+                "column_behavior": {
+                    "default": "now"
+                }
+            },
+            "import_date": {
+                "datatype": "datetime",
+                "column_behavior": {
+                    "default": "now"
+                }
+            },
+            "sourcesystem_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "valuetype_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "m_exclusion_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 25
+                }
+            },
+            "c_path": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 700
+                }
+            },
+            "c_symbol": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            }
+        }
+    },
+    "concept_dimension": {
+        "primary_key": {
+            "columns": ["concept_path"]
+        },
+        "indexes": [
+            {
+                "columns": ["upload_id"]
+            }
+        ],
+        "columns": {
+            "concept_path": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                },
+                "datatype_behavior": {
+                    "length": 700
+                }
+            },
+            "concept_cd": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "name_char": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 2000
+                }
+            },
+            "concept_blob": {
+                "datatype": "text"
+            },
+            "update_date": {
+                "datatype": "datetime"
+            },
+            "download_date": {
+                "datatype": "datetime"
+            },
+            "import_date": {
+                "datatype": "datetime"
+            },
+            "sourcesystem_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "upload_id": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 38,
+                    "scale": 0
+                }
+            }
+        }
+    },
+    "patient_dimension": {
+        "primary_key": {
+            "columns": ["patient_num"]
+        },
+        "indexes": [
+            {
+                "columns": ["upload_id"]
+            },
+            {
+                "columns": ["patient_num", "vital_status_cd", "birth_date", "death_date", "sex_cd", "age_in_years_num", "language_cd", "race_cd", "marital_status_cd", "religion_cd", "zip_cd", "income_cd"]
+            },
+            {
+                "columns": ["patient_num", "vital_status_cd", "birth_date", "death_date"]
+            },
+            {
+                "columns": ["statecityzip_path", "patient_num"]
+            }
+        ],
+        "columns": {
+            "patient_num": {
+                "datatype": "numeric",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                },
+                "datatype_behavior": {
+                    "precision": 38,
+                    "scale": 0
+                }
+            },
+            "vital_status_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "birth_date": {
+                "datatype": "datetime"
+            },
+            "death_date": {
+                "datatype": "datetime"
+            },
+            "sex_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "age_in_years_num": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 38,
+                    "scale": 0
+                }
+            },
+            "language_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "race_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "marital_status_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "religion_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "zip_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "statecityzip_path": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "income_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "patient_blob": {
+                "datatype": "text"
+            },
+            "update_date": {
+                "datatype": "datetime"
+            },
+            "download_date": {
+                "datatype": "datetime"
+            },
+            "import_date": {
+                "datatype": "datetime"
+            },
+            "sourcesystem_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "upload_id": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 38,
+                    "scale": 0
+                }
+            },
+            "ethnicity_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            }
+        }
+    },
+    "visit_dimension": {
+        "primary_key": {
+            "columns": ["encounter_num", "patient_num"]
+        },
+        "indexes": [
+            {
+                "columns": ["sourcesystem_cd"]
+            },
+            {
+                "columns": ["encounter_num"]
+            },
+            {
+                "columns": ["upload_id"]
+            },
+            {
+                "columns": ["encounter_num", "patient_num", "location_path", "inout_cd", "start_date", "end_date", "length_of_stay"]
+            },
+            {
+                "columns": ["start_date", "end_date"]
+            }
+        ],
+        "columns": {
+            "encounter_num": {
+                "datatype": "numeric",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                },
+                "datatype_behavior": {
+                    "precision": 38,
+                    "scale": 0
+                }
+            },
+            "patient_num": {
+                "datatype": "numeric",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                },
+                "datatype_behavior": {
+                    "precision": 38,
+                    "scale": 0
+                }
+            },
+            "active_status_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "start_date": {
+                "datatype": "datetime"
+            },
+            "end_date": {
+                "datatype": "datetime"
+            },
+            "inout_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "location_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "location_path": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 900
+                }
+            },
+            "length_of_stay": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 38,
+                    "scale": 0
+                }
+            },
+            "visit_blob": {
+                "datatype": "text"
+            },
+            "update_date": {
+                "datatype": "datetime"
+            },
+            "download_date": {
+                "datatype": "datetime"
+            },
+            "import_date": {
+                "datatype": "datetime"
+            },
+            "sourcesystem_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "upload_id": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 38,
+                    "scale": 0
+                }
+            }
+        }
+    },
+    "observation_fact": {
+        "primary_key": {
+            "columns": ["patient_num", "concept_cd", "modifier_cd", "start_date", "encounter_num", "instance_num", "provider_id"]
+        },
+        "indexes": [
+            {
+                "columns": ["concept_cd", "instance_num", "patient_num", "encounter_num"]
+            },
+            {
+                "columns": ["patient_num", "start_date", "concept_cd", "encounter_num", "instance_num", "nval_num", "tval_char", "valtype_cd", "modifier_cd", "valueflag_cd", "provider_id", "quantity_num", "units_cd", "end_date", "location_cd", "confidence_num", "update_date", "download_date", "import_date", "sourcesystem_cd", "upload_id"]
+            },
+            {
+                "columns": ["patient_num", "concept_cd", "start_date", "end_date", "encounter_num", "instance_num", "provider_id", "nval_num", "valtype_cd"]
+            },
+            {
+                "columns": ["concept_cd"]
+            },
+            {
+                "columns": ["encounter_num"]
+            }
+        ],
+        "columns": {
+            "encounter_num": {
+                "datatype": "numeric",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                },
+                "datatype_behavior": {
+                    "precision": 38,
+                    "scale": 0
+                }
+            },
+            "patient_num": {
+                "datatype": "numeric",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                },
+                "datatype_behavior": {
+                    "precision": 38,
+                    "scale": 0
+                }
+            },
+            "concept_cd": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                },
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "provider_id": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                },
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "start_date": {
+                "datatype": "datetime",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                }
+            },
+            "modifier_cd": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false,
+                    "default": "@"
+                },
+                "datatype_behavior": {
+                    "length": 100
+                }
+            },
+            "instance_num": {
+                "datatype": "numeric",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false,
+                    "default": 1 
+                },
+                "datatype_behavior": {
+                    "precision": 18,
+                    "scale": 0
+                }
+            },
+            "valtype_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "tval_char": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 255
+                }
+            },
+            "nval_num": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 18,
+                    "scale": 5
+                }
+            },
+            "valueflag_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "quantity_num": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 18,
+                    "scale": 5
+                }
+            },
+            "units_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "end_date": {
+                "datatype": "datetime"
+            },
+            "location_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "observation_blob": {
+                "datatype": "text"
+            },
+            "confidence_num": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 18,
+                    "scale": 5
+                }
+            },
+            "update_date": {
+                "datatype": "datetime"
+            },
+            "download_date": {
+                "datatype": "datetime"
+            },
+            "import_date": {
+                "datatype": "datetime"
+            },
+            "sourcesystem_cd": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "upload_id": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 38,
+                    "scale": 0
+                }
+            }
+        }
+    }
+}

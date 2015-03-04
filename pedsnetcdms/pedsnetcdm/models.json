@@ -1,0 +1,1230 @@
+{
+    "care_site": {
+        "primary_key": {
+            "columns": ["care_site_id"]
+        },
+        "foreign_keys": [
+            {
+                "from": "location_id",
+                "to": "location.location_id"
+            },
+            {
+                "from": "organization_id",
+                "to": "organization.organization_id"
+            }
+        ],
+        "uniques": [
+            {
+                "columns": ["organization_id", "care_site_source_value"]
+            }
+        ],
+        "columns": {
+            "care_site_id": {
+                "datatype": "integer",
+                "datatype_behavior": {
+                    "nullable": false
+                }
+            },
+            "place_of_service_concept_id": {
+                "datatype": "integer"
+            },
+            "location_id": {
+                "datatype": "integer"
+            },
+            "care_site_source_value": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "length": 100
+                }
+            },
+            "place_of_service_source_value": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 100
+                }
+            },
+            "organization_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            }
+        }
+    },
+    "cohort": {
+        "primary_key": {
+            "columns": ["cohort_id"]
+        },
+        "columns": {
+            "cohort_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "cohort_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "cohort_start_date": {
+                "datatype": "datetime",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "cohort_end_date": {
+                "datatype": "datetime"
+            },
+            "subject_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "stop_reason": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 100
+                }
+            }
+        }
+    },
+    "condition_era": {
+        "primary_key": {
+            "columns": ["condition_era_id"]
+        },
+        "foreign_keys": [
+            {
+                "from": "person_id",
+                "to": "person.person_id"
+            }
+        ],
+        "columns": {
+            "condition_era_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "person_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "condition_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "condition_era_start_date": {
+                "datatype": "datetime",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "condition_era_end_date": {
+                "datatype": "datetime",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "condition_type_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "condition_occurrence_count": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 4,
+                    "scale": 0
+                }
+            }
+        }
+    },
+    "condition_occurrence": {
+        "primary_key": {
+            "columns": ["condition_occurrence_id"]
+        },
+        "foreign_keys": [
+            {
+                "from": "person_id",
+                "to": "person.person_id"
+            },
+            {
+                "from": "associated_provider_id",
+                "to": "provider.provider_id"
+            },
+            {
+                "from": "visit_occurrence_id",
+                "to": "visit_occurrence.visit_occurrence_id"
+            }
+        ],
+        "columns": {
+            "condition_occurrence_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "person_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "condition_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "condition_start_date": {
+                "datatype": "datetime",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "condition_end_date": {
+                "datatype": "datetime"
+            },
+            "condition_type_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "stop_reason": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 100
+                }
+            },
+            "associated_provider_id": {
+                "datatype": "integer"
+            },
+            "visit_occurrence_id": {
+                "datatype": "integer"
+            },
+            "condition_source_value": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 100
+                }
+            }
+        }
+    },
+    "death": {
+        "primary_key": {
+            "columns": ["person_id", "death_type_concept_id",
+                        "cause_of_death_concept_id"]
+        },
+        "foreign_keys": [
+            {
+                "from": "person_id",
+                "to": "person.person_id"
+            }
+        ],
+        "columns": {
+            "person_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "death_date": {
+                "datatype": "datetime",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "death_type_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                }
+            },
+            "cause_of_death_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": true,
+                    "autoincrement": false
+                }
+            },
+            "cause_of_death_source_value": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 100
+                }
+            }
+        }
+    },
+    "drug_cost": {
+        "primary_key": {
+            "columns": ["drug_cost_id"]
+        },
+        "foreign_keys": [
+            {
+                "from": "drug_exposure_id",
+                "to": "drug_exposure.drug_exposure_id"
+            },
+            {
+                "from": "payer_plan_period_id",
+                "to": "payer_plan_period.payer_plan_period_id"
+            }
+        ],
+        "columns": {
+            "drug_cost_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "drug_exposure_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "paid_copay": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 8,
+                    "scale": 2
+                }
+            },
+            "paid_coinsurance": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 8,
+                    "scale": 2
+                }
+            },
+            "paid_toward_deductible": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 8,
+                    "scale": 2
+                }
+            },
+            "paid_by_payer": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 8,
+                    "scale": 2
+                }
+            },
+            "paid_by_coordination_benefits": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 8,
+                    "scale": 2
+                }
+            },
+            "total_out_of_pocket": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 8,
+                    "scale": 2
+                }
+            },
+            "total_paid": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 8,
+                    "scale": 2
+                }
+            },
+            "ingredient_cost": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 8,
+                    "scale": 2
+                }
+            },
+            "dispensing_fee": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 8,
+                    "scale": 2
+                }
+            },
+            "average_wholesale_price": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 8,
+                    "scale": 2
+                }
+            },
+            "payer_plan_period_id": {
+                "datatype": "integer"
+            }
+        }
+    },
+    "drug_era": {
+        "primary_key": {
+            "columns": ["drug_era_id"]
+        },
+        "foreign_keys": [
+            {
+                "from": "person_id",
+                "to": "person.person_id"
+            }
+        ],
+        "columns": {
+            "drug_era_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "person_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "drug_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "drug_era_start_date": {
+                "datatype": "datetime",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "drug_era_end_date": {
+                "datatype": "datetime",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "drug_type_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "drug_exposure_count": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 4,
+                    "scale": 0
+                }
+            }
+        }
+    },
+    "drug_exposure": {
+        "primary_key": {
+            "columns": ["drug_exposure_id"]
+        },
+        "foreign_keys": [
+            {
+                "from": "person_id",
+                "to": "person.person_id"
+            },
+            {
+                "from": "prescribing_provider_id",
+                "to": "provider.provider_id"
+            },
+            {
+                "from": "visit_occurrence_id",
+                "to": "visit_occurrence.visit_occurrence_id"
+            }
+        ],
+        "columns": {
+            "drug_exposure_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "person_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "drug_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "drug_exposure_start_date": {
+                "datatype": "datetime",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "drug_exposure_end_date": {
+                "datatype": "datetime"
+            },
+            "drug_type_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "stop_reason": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 100
+                }
+            },
+            "refills": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 3,
+                    "scale": 0
+                }
+            },
+            "quantity": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 4,
+                    "scale": 0
+                }
+            },
+            "days_supply": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 4,
+                    "scale": 0
+                }
+            },
+            "sig": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 500
+                }
+            },
+            "prescribing_provider_id": {
+                "datatype": "integer"
+            },
+            "visit_occurrence_id": {
+                "datatype": "integer"
+            },
+            "relevant_condition_concept_id": {
+                "datatype": "integer"
+            },
+            "drug_source_value": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 100
+                }
+            }
+        }
+    },
+    "location": {
+        "primary_key": {
+            "columns": ["location_id"]
+        },
+        "columns": {
+            "location_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "state": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 2
+                }
+            },
+            "zip": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 9
+                }
+            },
+            "location_source_value": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 300
+                }
+            },
+            "address_1": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 100
+                }
+            },
+            "address_2": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 100
+                }
+            },
+            "city": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "county": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            }
+        }
+    },
+    "observation": {
+        "primary_key": {
+            "columns": ["observation_id"]
+        },
+        "foreign_keys": [
+            {
+                "from": "person_id",
+                "to": "person.person_id"
+            },
+            {
+                "from": "associated_provider_id",
+                "to": "provider.provider_id"
+            },
+            {
+                "from": "visit_occurrence_id",
+                "to": "visit_occurrence.visit_occurrence_id"
+            }
+        ],
+        "indexes": [
+            {
+                "columns": ["person_id", "observation_concept_id"]
+            }
+        ],
+        "columns": {
+            "observation_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "person_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "observation_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "observation_date": {
+                "datatype": "datetime",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "observation_time": {
+                "datatype": "datetime"
+            },
+            "observation_type_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "value_as_number": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 14,
+                    "scale": 3
+                }
+            },
+            "value_as_string": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 4000
+                }
+            },
+            "value_as_concept_id": {
+                "datatype": "integer"
+            },
+            "unit_concept_id": {
+                "datatype": "integer"
+            },
+            "associated_provider_id": {
+                "datatype": "integer"
+            },
+            "visit_occurrence_id": {
+                "datatype": "integer"
+            },
+            "relevant_condition_concept_id": {
+                "datatype": "integer"
+            },
+            "observation_source_value": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 100
+                }
+            },
+            "units_source_value": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 100
+                }
+            },
+            "range_low": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 14,
+                    "scale": 3
+                }
+            },
+            "range_high": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 14,
+                    "scale": 3
+                }
+            }
+        }
+    },
+    "observation_period": {
+        "primary_key": {
+            "columns": ["observation_period_id"]
+        },
+        "foreign_keys": [
+            {
+                "from": "person_id",
+                "to": "person.person_id"
+            }
+        ],
+        "indexes": [
+            {
+                "columns": ["person_id", "observation_period_start_date"]
+            }
+        ],
+        "columns": {
+            "observation_period_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "person_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "observation_period_start_date": {
+                "datatype": "datetime",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "observation_period_end_date": {
+                "datatype": "datetime"
+            }
+        }
+    },
+    "organization": {
+        "primary_key": {
+            "columns": ["organization_id"]
+        },
+        "foreign_keys": [
+            {
+                "from": "location_id",
+                "to": "location.location_id"
+            }
+        ],
+        "indexes": [
+            {
+                "columns": ["organization_source_value",
+                            "place_of_service_source_value"]
+            }
+        ],
+        "columns": {
+            "organization_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "place_of_service_concept_id": {
+                "datatype": "integer"
+            },
+            "location_id": {
+                "datatype": "integer"
+            },
+            "place_of_service_source_value": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 100
+                }
+            },
+            "organization_source_value": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false,
+                    "unique": true
+                },
+                "datatype_behavior": {
+                    "length": 50
+                }
+            }
+        }
+    },
+    "payer_plan_period": {
+        "primary_key": {
+            "columns": ["payer_plan_period_id"]
+        },
+        "foreign_keys": [
+            {
+                "from": "person_id",
+                "to": "person.person_id"
+            }
+        ],
+        "columns": {
+            "payer_plan_period_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "person_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "payer_plan_period_start_date": {
+                "datatype": "datetime",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "payer_plan_period_end_date": {
+                "datatype": "datetime",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "payer_source_value": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 100
+                }
+            },
+            "plan_source_value": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 100
+                }
+            },
+            "family_source_value": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 100
+                }
+            }
+        }
+    },
+    "person": {
+        "primary_key": {
+            "columns": ["person_id"]
+        },
+        "foreign_keys": [
+            {
+                "from": "care_site_id",
+                "to": "care_site.care_site_id"
+            },
+            {
+                "from": "location_id",
+                "to": "location.location_id"
+            },
+            {
+                "from": "provider_id",
+                "to": "provider.provider_id"
+            }
+        ],
+        "columns": {
+            "person_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "gender_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "year_of_birth": {
+                "datatype": "numeric",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "precision": 4,
+                    "scale": 0
+                }
+            },
+            "month_of_birth": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 2,
+                    "scale": 0
+                }
+            },
+            "day_of_birth": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 2,
+                    "scale": 0
+                }
+            },
+            "pn_time_of_birth": {
+                "datatype": "datetime"
+            },
+            "race_concept_id": {
+                "datatype": "integer"
+            },
+            "ethnicity_concept_id": {
+                "datatype": "integer"
+            },
+            "location_id": {
+                "datatype": "integer"
+            },
+            "provider_id": {
+                "datatype": "integer"
+            },
+            "care_site_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "pn_gestational_age": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 4,
+                    "scale": 2
+                }
+            },
+            "person_source_value": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false,
+                    "unique": true
+                },
+                "datatype_behavior": {
+                    "length": 100
+                }
+            },
+            "gender_source_value": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "race_source_value": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            },
+            "ethnicity_source_value": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 50
+                }
+            }
+        }
+    },
+    "procedure_cost": {
+        "primary_key": {
+            "columns": ["procedure_cost_id"]
+        },
+        "foreign_keys": [
+            {
+                "from": "payer_plan_period_id",
+                "to": "payer_plan_period.payer_plan_period_id"
+            },
+            {
+                "from": "procedure_occurrence_id",
+                "to": "procedure_occurrence.procedure_occurrence_id"
+            }
+        ],
+        "columns": {
+            "procedure_cost_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "procedure_occurrence_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "paid_copay": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 8,
+                    "scale": 2
+                }
+            },
+            "paid_coinsurance": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 8,
+                    "scale": 2
+                }
+            },
+            "paid_toward_deductible": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 8,
+                    "scale": 2
+                }
+            },
+            "paid_by_payer": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 8,
+                    "scale": 2
+                }
+            },
+            "paid_by_coordination_benefits": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 8,
+                    "scale": 2
+                }
+            },
+            "total_out_of_pocket": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 8,
+                    "scale": 2
+                }
+            },
+            "total_paid": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 8,
+                    "scale": 2
+                }
+            },
+            "disease_class_concept_id": {
+                "datatype": "integer"
+            },
+            "revenue_code_concept_id": {
+                "datatype": "integer"
+            },
+            "payer_plan_period_id": {
+                "datatype": "integer"
+            },
+            "disease_class_source_value": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 100
+                }
+            },
+            "revenue_code_source_value": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 100
+                }
+            }
+        }
+    },
+    "procedure_occurrence": {
+        "primary_key": {
+            "columns": ["procedure_occurrence_id"]
+        },
+        "foreign_keys": [
+            {
+                "from": "person_id",
+                "to": "person.person_id"
+            },
+            {
+                "from": "associated_provider_id",
+                "to": "provider.provider_id"
+            },
+            {
+                "from": "visit_occurrence_id",
+                "to": "visit_occurrence.visit_occurrence_id"
+            }
+        ],
+        "columns": {
+            "procedure_occurrence_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "person_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "procedure_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "procedure_date": {
+                "datatype": "datetime",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "procedure_type_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "associated_provider_id": {
+                "datatype": "integer"
+            },
+            "visit_occurrence_id": {
+                "datatype": "integer"
+            },
+            "relevant_condition_concept_id": {
+                "datatype": "integer"
+            },
+            "procedure_source_value": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 100
+                }
+            }
+        }
+    },
+    "provider": {
+        "primary_key": {
+            "columns": ["provider_id"]
+        },
+        "foreign_keys": [
+            {
+                "from": "care_site_id",
+                "to": "care_site.care_site_id"
+            }
+        ],
+        "columns": {
+            "provider_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "specialty_concept_id": {
+                "datatype": "integer"
+            },
+            "care_site_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "npi": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 20
+                }
+            },
+            "dea": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 20
+                }
+            },
+            "provider_source_value": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "length": 100
+                }
+            },
+            "specialty_source_value": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 300
+                }
+            }
+        }
+    },
+    "visit_occurrence": {
+        "primary_key": {
+            "columns": ["visit_occurrence_id"]
+        },
+        "foreign_keys": [
+            {
+                "from": "person_id",
+                "to": "person.person_id"
+            }
+        ],
+        "indexes": [
+            {
+                "columns": ["person_id", "visit_start_date"]
+            }
+        ],
+        "columns": {
+            "visit_occurrence_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "person_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "visit_start_date": {
+                "datatype": "datetime",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "visit_end_date": {
+                "datatype": "datetime"
+            },
+            "provider_id": {
+                "datatype": "integer"
+            },
+            "care_site_id": {
+                "datatype": "integer"
+            },
+            "place_of_service_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "place_of_service_source_value": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 100
+                }
+            }
+        }
+    }
+}

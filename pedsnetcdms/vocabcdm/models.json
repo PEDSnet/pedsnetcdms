@@ -1,0 +1,494 @@
+{
+    "concept": {
+        "primary_key": {
+            "columns": ["concept_id"]
+        },
+        "foreign_keys": [
+            {
+                "from": "vocabulary_id",
+                "to": "vocabulary.vocabulary_id"
+            }
+        ],
+        "columns": {
+            "concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                }
+            },
+            "concept_name": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "length": 256
+                }
+            },
+            "concept_level": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "concept_class": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "length": 60
+                }
+            },
+            "vocabulary_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "concept_code": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "length": 40
+                }
+            },
+            "valid_start_date": {
+                "datatype": "date",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "valid_end_date": {
+                "datatype": "date",
+                "column_behavior": {
+                    "nullable": false,
+                    "default": "2099-12-31"
+                }
+            },
+            "invalid_reason": {
+                "datatype": "string",
+                "column_behavior": {
+                    "choices": ["D", "U"]
+                },
+                "datatype_behavior": {
+                    "length": 1
+                }
+            }
+        }
+    },
+    "concept_ancestor": {
+        "primary_key": {
+            "columns": ["ancestor_concept_id", "descendant_concept_id"]
+        },
+        "foreign_keys": [
+            {
+                "from": "ancestor_concept_id",
+                "to": "concept.concept_id"
+            },
+            {
+                "from": "descendant_concept_id",
+                "to": "concept.concept_id"
+            }
+        ],
+        "columns": {
+            "ancestor_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                }
+            },
+            "descendant_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                }
+            },
+            "max_levels_of_separation": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 38,
+                    "scale": 0
+                }
+            },
+            "min_levels_of_separation": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 38,
+                    "scale": 0
+                }
+            }
+        }
+    },
+    "concept_relationship": {
+        "primary_key": {
+            "columns": ["concept_id_1", "concept_id_2", "relationship_id"]
+        },
+        "foreign_keys": [
+            {
+                "from": "concept_id_2",
+                "to": "concept.concept_id"
+            },
+            {
+                "from": "concept_id_1",
+                "to": "concept.concept_id"
+            },
+            {
+                "from": "relationship_id",
+                "to": "relationship.relationship_id"
+            }
+        ],
+        "columns": {
+            "concept_id_1": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                }
+            },
+            "concept_id_2": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                }
+            },
+            "relationship_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                }
+            },
+            "valid_start_date": {
+                "datatype": "date",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "valid_end_date": {
+                "datatype": "date",
+                "column_behavior": {
+                    "nullable": false,
+                    "default": "2099-12-31"
+                }
+            },
+            "invalid_reason": {
+                "datatype": "string",
+                "column_behavior": {
+                    "choices": ["D", "U"]
+                },
+                "datatype_behavior": {
+                    "length": 1
+                }
+            }
+        }
+    },
+    "concept_synonym": {
+        "primary_key": {
+            "columns": ["concept_synonym_id"]
+        },
+        "foreign_keys": [
+            {
+                "from": "concept_id",
+                "to": "concept.concept_id"
+            }
+        ],
+        "columns": {
+            "concept_synonym_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                }
+            },
+            "concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "concept_synonym_name": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "length": 1000
+                }
+            }
+        }
+    },
+    "drug_approval": {
+        "primary_key": {
+            "columns": ["ingredient_concept_id"]
+        },
+        "columns": {
+            "ingredient_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                }
+            },
+            "approval_date": {
+                "datatype": "date",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "approved_by": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false,
+                    "default": "FDA"
+                },
+                "datatype_behavior": {
+                    "length": 20
+                }
+            }
+        }
+    },
+    "drug_strength": {
+        "primary_key": {
+            "columns": ["drug_concept_id", "ingredient_concept_id",
+                        "valid_end_date"]
+        },
+        "columns": {
+            "drug_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                }
+            },
+            "ingredient_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                }
+            },
+            "amount_value": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 38,
+                    "scale": 0
+                }
+            },
+            "amount_unit": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 60
+                }
+            },
+            "concentration_value": {
+                "datatype": "numeric",
+                "datatype_behavior": {
+                    "precision": 38,
+                    "scale": 0
+                }
+            },
+            "concentration_enum_unit": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 60
+                }
+            },
+            "concentration_denom_unit": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 60
+                }
+            },
+            "valid_start_date": {
+                "datatype": "date",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "valid_end_date": {
+                "datatype": "date",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "invalid_reason": {
+                "datatype": "string",
+                "column_behavior": {
+                    "choices": ["D", "U"]
+                },
+                "datatype_behavior": {
+                    "length": 1
+                }
+            }
+        }
+    },
+    "relationship": {
+        "primary_key": {
+            "columns": ["relationship_id"]
+        },
+        "columns": {
+            "relationship_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                }
+            },
+            "relationship_name": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "length": 256
+                }
+            },
+            "is_hierarchical": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "defines_ancestry": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false,
+                    "default": 1
+                }
+            },
+            "reverse_relationship": {
+                "datatype": "integer"
+            }
+        }
+    },
+    "source_to_concept_map": {
+        "primary_key": {
+            "columns": ["source_vocabulary_id", "target_concept_id",
+                        "source_code", "valid_end_date"]
+        },
+        "foreign_keys": [
+            {
+                "from": "target_concept_id",
+                "to": "concept.concept_id"
+            },
+            {
+                "from": "source_vocabulary_id",
+                "to": "vocabulary.vocabulary_id"
+            },
+            {
+                "from": "target_vocabulary_id",
+                "to": "vocabulary.vocabulary_id"
+            }
+        ],
+        "indexes": [
+            {
+                "columns": ["source_code"]
+            }
+        ],
+        "columns": {
+            "source_code": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false
+                },
+                "datatype_behavior": {
+                    "length": 40
+                }
+            },
+            "source_vocabulary_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                }
+            },
+            "source_code_description": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 256
+                }
+            },
+            "target_concept_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                }
+            },
+            "target_vocabulary_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "mapping_type": {
+                "datatype": "string",
+                "datatype_behavior": {
+                    "length": 20
+                }
+            },
+            "primary_map": {
+                "datatype": "string",
+                "column_behavior": {
+                    "choices": ["Y"]
+                },
+                "datatype_behavior": {
+                    "length": 1
+                }
+            },
+            "valid_start_date": {
+                "datatype": "date",
+                "column_behavior": {
+                    "nullable": false
+                }
+            },
+            "valid_end_date": {
+                "datatype": "date",
+                "column_behavior": {
+                    "nullable": false,
+                    "default": "2099-12-31"
+                }
+            },
+            "invalid_reason": {
+                "datatype": "string",
+                "column_behavior": {
+                    "choices": ["D", "U"]
+                },
+                "datatype_behavior": {
+                    "length": 1
+                }
+            }
+        }
+    },
+    "vocabulary": {
+        "primary_key": {
+            "columns": ["vocabulary_id"]
+        },
+        "columns": {
+            "vocabulary_id": {
+                "datatype": "integer",
+                "column_behavior": {
+                    "nullable": false,
+                    "autoincrement": false
+                }
+            },
+            "vocabulary_name": {
+                "datatype": "string",
+                "column_behavior": {
+                    "nullable": false,
+                    "unique": true
+                },
+                "datatype_behavior": {
+                    "length": 256
+                }
+            }
+        }
+    }
+}
