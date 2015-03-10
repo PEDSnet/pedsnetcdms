@@ -43,7 +43,7 @@ def _make_column(name, column):
 
     # Set the db_column kwarg to avoid Django's annoying '_id' suffix.
 
-    kwargs['db_column'] = name
+    kwargs['db_column'] = column.get('db_column') or name
 
     # Set null kwarg, defaulting to False for primary keys and True for others.
 
@@ -187,10 +187,12 @@ def _make_model(name, model, bases):
 
     for foreign_key in model.get('foreign_keys', []):
 
+        fkey_name = foreign_key['from']
+
         to_name = foreign_key['to'].split('.')[0]
         to_class = ''.join(i.capitalize() for i in to_name.split('_'))
 
-        fkey_column = model['columns'][foreign_key['from']]
+        fkey_column = model['columns'][fkey_name]
 
         fkey_column['column_behavior'] = fkey_column.get('column_behavior', {})
         fkey_column['column_behavior'].update({'foreign_key_to': to_class})
@@ -202,7 +204,17 @@ def _make_model(name, model, bases):
                        for fkey in model['foreign_keys']]:
             fkey_column['column_behavior'].\
                 update({'related_name': '{0}_{1}_set'.
-                        format(name, foreign_key['from'])})
+                        format(name, fkey_name)})
+
+        # Strip `_id` suffix from references in uniques and indexes.
+
+        for idx_cols in [idx['columns'] for idx in model.get('indexes', [])]:
+            if fkey_name in idx_cols:
+                idx_cols[idx_cols.index(fkey_name)] = fkey_name.rstrip('_id')
+
+        for uq_cols in [uq['columns'] for uq in model.get('uniques', [])]:
+            if fkey_name in uq_cols:
+                uq_cols[uq_cols.index(fkey_name)] = fkey_name.rstrip('_id')
 
     # Create and add the Meta class.
 
@@ -211,7 +223,15 @@ def _make_model(name, model, bases):
     # Add columns to the class.
 
     for name, column in model['columns'].iteritems():
-        class_contents.update({name: _make_column(name, column)})
+
+        attname = name
+
+        # Strip `_id` suffix from foreign key column attribute name.
+
+        if name in [fkey['from'] for fkey in model.get('foreign_keys', [])]:
+            attname = name.rstrip('_id')
+
+        class_contents.update({attname: _make_column(name, column)})
 
     # Return a dynamically constructed model class.
 
