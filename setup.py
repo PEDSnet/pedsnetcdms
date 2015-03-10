@@ -24,7 +24,7 @@ install_requires = [
 
 kwargs = {
     'name': 'pedsnetcdms',
-    'version': '0.1',
+    'version': '0.1.1',
     'author': 'The Children\'s Hospital of Philadelphia',
     'author_email': 'cbmisupport@email.chop.edu',
     'url': 'https://github.com/PEDSnet/Data_Models',
@@ -33,7 +33,7 @@ kwargs = {
     'packages': find_packages(),
     'package_data': package_data,
     'install_requires': install_requires,
-    'download_url': 'https://github.com/PEDSnet/pedsnetcdms/tarball/0.1',
+    'download_url': 'https://github.com/PEDSnet/pedsnetcdms/tarball/0.1.1',
 }
 
 setup(**kwargs)
